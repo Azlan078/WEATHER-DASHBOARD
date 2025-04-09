@@ -1,38 +1,379 @@
-.App {
-  text-align: center;
+/* src/App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body.dark-mode {
+  background-color: #1e2126;
+  color: #f5f7fa;
 }
 
-.App-header {
-  background-color: #282c34;
+.app-container {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dark-mode header {
+  border-bottom: 1px solid #444;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.dark-mode header h1 {
+  color: #e6e6e6;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: #eee;
+}
+
+.dark-mode .theme-toggle {
+  border-color: #666;
+  color: #fff;
+}
+
+.dark-mode .theme-toggle:hover {
+  background-color: #444;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+.dark-mode .search-bar input {
+  background-color: #2d3748;
+  color: #fff;
+  border-color: #4a5568;
+}
+
+.search-bar button {
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #2980b9;
+}
+
+.recent-searches {
+  margin-bottom: 20px;
+}
+
+.recent-searches h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.dark-mode .recent-searches h3 {
+  color: #bbb;
+}
+
+.search-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-item {
+  background-color: #e6e6e6;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-item:hover {
+  background-color: #d4d4d4;
+}
+
+.dark-mode .search-item {
+  background-color: #3a3f4b;
+  color: #e6e6e6;
+}
+
+.dark-mode .search-item:hover {
+  background-color: #4a5568;
+}
+
+.loader-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 40px;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.dark-mode .loader {
+  border-color: #444;
+  border-top-color: #3498db;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: #fee8e7;
+  border-left: 4px solid #e74c3c;
+  padding: 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+}
+
+.dark-mode .error-message {
+  background-color: #442726;
+  border-left-color: #e74c3c;
+  color: #f7f7f7;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+}
+
+.weather-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+
+.dark-mode .weather-card {
+  background-color: #2d3748;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #3498db;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.weather-header h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.refresh-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.refresh-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.weather-body {
+  padding: 20px;
+}
+
+.temperature-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.weather-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.temperature {
+  margin-left: 15px;
+}
+
+.temperature h3 {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.dark-mode .description {
+  color: #bbb;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.dark-mode .detail-item {
+  background-color: #3a3f4b;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.dark-mode .label {
+  color: #bbb;
+}
+
+.value {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid #ddd;
+}
+
+.dark-mode footer {
+  color: #aaa;
+  border-top-color: #444;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 10px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .search-bar {
+    flex-direction: column;
+  }
+  
+  .weather-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .temperature-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .temperature {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  
+  .weather-details {
+    grid-template-columns: 1fr;
   }
 }
