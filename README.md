@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+# 🌤️ Weather Dashboard Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive Weather Dashboard built with **React.js**, powered by the **OpenWeatherMap API**. Users can search for any city worldwide and view real-time weather conditions.
 
-## Available Scripts
+## 🚀 Live Demo
 
-In the project directory, you can run:
+👉 [Live Weather Dashboard](https://your-deployment-url.com)
 
-### `npm start`
+> ✅ No login required  
+> ✅ Loads directly to the main weather dashboard view
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📌 Features
 
-### `npm test`
+- 🔍 Search any city for current weather
+- 🌡️ Displays temperature (°C), condition, humidity, wind speed
+- 🖼️ Dynamic weather icons
+- 🔄 Refresh button to update weather
+- 📚 Recent Search History (last 5 cities)
+- 🌙 Dark / Light mode toggle *(optional bonus)*
+- 📈 5-Day Forecast using OpenWeatherMap's Forecast API *(optional bonus)*
+- 🎯 Fully responsive design for mobile and desktop
+- ⚠️ Graceful handling of loading and error states
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧱 Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React.js** (with Hooks for state & effects)
+- **OpenWeatherMap API**
+- **CSS Modules / Styled Components / Basic CSS** *(No Tailwind)*
+- **Framer Motion** (optional: for UI animations)
+- **Deployed on:** Vercel / Netlify / GitHub Pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📦 Getting Started
 
-### `npm run eject`
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/weather-dashboard.git
+cd weather-dashboard
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install Dependencies
+bash
+Copy
+Edit
+npm install
+3. Add OpenWeatherMap API Key
+Create a .env file in the root directory and add your API key:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ini
+Copy
+Edit
+REACT_APP_OPENWEATHER_API_KEY=your_api_key_here
+🔑 Get a free API key from: https://openweathermap.org/api
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Start the App Locally
+bash
+Copy
+Edit
+npm start
+The app will be available at http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🌐 Deployment
+This app can be deployed on any of the following platforms:
 
-## Learn More
+➤ Deploy on Vercel
+Push code to GitHub
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Import project at https://vercel.com
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Set environment variable: REACT_APP_OPENWEATHER_API_KEY
 
-### Code Splitting
+Deploy with default settings
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+➤ Deploy on Netlify
+Push to GitHub
 
-### Analyzing the Bundle Size
+Import repo at https://netlify.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Set build command: npm run build
 
-### Making a Progressive Web App
+Set publish directory: build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Add environment variable: REACT_APP_OPENWEATHER_API_KEY
 
-### Advanced Configuration
+➤ Deploy on GitHub Pages
+Install gh-pages:
+npm install gh-pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Add to package.json:
 
-### Deployment
+json
+Copy
+Edit
+"homepage": "https://yourusername.github.io/weather-dashboard",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+Run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+bash
+Copy
+Edit
+npm run deploy
+📁 Project Structure
+java
+Copy
+Edit
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── SearchBar.jsx
+│   │   ├── WeatherCard.jsx
+│   │   ├── Forecast.jsx
+│   │   └── History.jsx
+│   ├── App.jsx
+│   ├── api/
+│   │   └── weather.js
+│   ├── utils/
+│   └── styles/
+│       └── App.css
+├── .env
+├── package.json
+└── README.md
+❗ Error Handling
+If city not found ➝ "City not found. Please try again."
 
-### `npm run build` fails to minify
+If API fails ➝ "Unable to fetch weather data at the moment."
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Shows loader during data fetch
+
+🧠 Future Improvements
+Local storage persistence for recent searches
+
+More detailed weather charts
+
+Location-based weather on load
+
+Unit toggle (°C/°F)
