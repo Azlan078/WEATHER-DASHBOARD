@@ -17,24 +17,39 @@ function App() {
 
   // Use environment variable for API key
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-  
+
+  useEffect(() => {
+    if (!API_KEY) {
+      console.error('API key is missing! Check your .env file');
+      setError('API configuration error');
+    }
+  }, [API_KEY]);
+
+  const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
   const fetchWeather = async (cityName) => {
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`
-      );
-      
-      if (!response.ok) {
-        throw new Error(
-          response.status === 404 
-            ? 'City not found. Please check the spelling and try again.' 
-            : 'Failed to fetch weather data. Please try again later.'
-        );
+      if (!API_KEY) {
+        throw new Error('API key is not configured. Please check your environment settings.');
       }
-      
+
+      const response = await fetch(
+        `${BASE_URL}?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric`,
+        {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          }
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to fetch weather data');
+      }
+
       const data = await response.json();
       setWeather(data);
       
@@ -46,6 +61,7 @@ function App() {
       }
       
     } catch (err) {
+      console.error('Fetch error:', err);
       setError(err.message);
       setWeather(null);
     } finally {
