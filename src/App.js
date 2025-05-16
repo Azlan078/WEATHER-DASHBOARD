@@ -15,9 +15,8 @@ function App() {
   const [recentSearches, setRecentSearches] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
 
-  // API key would typically be stored in environment variables
-  // For this demo purpose, we'll include it directly
-  const API_KEY = "93788615356b513d89de1fc2cfbe9b2f"; // Replace with your actual API key
+  // Use environment variable for API key
+  const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
   
   const fetchWeather = async (cityName) => {
     setLoading(true);
